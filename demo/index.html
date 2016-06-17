@@ -9,25 +9,27 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title>video-wrapper Demo</title>
-    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
-      <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>video-wrapper Demo</title>
+  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
   <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
- 
-    <link rel="import" href="../video-wrapper.html">
-    <style>
-      demo-snippet {
-        height: 350px;
-      }
-      .demo {
-        height: 100%;
-      }
-    </style>
-  </head>
-  <body unresolved>
+  <link rel="import" href="../video-wrapper.html">
+  <style>
+  demo-snippet {
+    /*height: 350px;*/
+  }
+  
+  .demo {
+    /*height: 100%;*/
+  }
+  </style>
+</head>
+
+<body unresolved>
   <div class="vertical-section-container centered">
     <h4>video-wrapper Demo</h4>
     <p>A wrapper to attach google-youtube only when needed</p>
@@ -38,7 +40,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <h2>Video Title</h2>
             <p>Hello</p>
           </video-wrapper>
-          
         </template>
       </template>
     </demo-snippet>
@@ -48,9 +49,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     app = document.querySelector('#app');
     wrapper = app.$.wrapper;
     wrapper.videoId = 'puhAfX-RXm0';
-    
+
   });
   </script>
 </body>
-  
+
 </html>

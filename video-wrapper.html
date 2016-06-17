@@ -36,23 +36,19 @@ Example:
       display: block;
       box-sizing: border-box;
       width: 100%;
-      /*height: 100%;*/
-      height: auto;
+      padding-bottom: 56%;
+      margin: 0px auto;
       position: relative;
     }
     
     #container {
+      height: 100%;
+      width: 100%;
       max-width: 100%;
       max-height: 100%;
     }
-    
+
     neon-animated-pages {
-      vertical-align: bottom;
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
     }
     </style>
     <div id="container">
@@ -62,7 +58,7 @@ Example:
         </neon-animatable>
         <neon-animatable>
           <template is="dom-if" if={{isEnabled}}>
-            <google-youtube fluid autoplay="1" video-id="[[videoId]]" playbackstarted="[[playbackstarted]]" state="[[state]]" currenttime="[[currenttime]]" duration="[[duration]]" currenttimeformatted="[[currenttimeformatted]]" durationformatted="[[durationformatted]]" fractionloaded="[[fractionloaded]]" chromeless="[[chromeless]]" thumbnail="[[thumbnail]]"></google-youtube>
+            <google-youtube fluid autoplay="1" modestbranding="1" video-id="[[videoId]]" playbackstarted="{{playbackstarted}}" state="{{state}}" currenttime="{{currenttime}}" duration="{{duration}}" currenttimeformatted="{{currenttimeformatted}}" durationformatted="{{durationformatted}}" fractionloaded="{{fractionloaded}}" chromeless="[[chromeless]]" thumbnail="[[thumbnail]]"></google-youtube>
           </template>
         </neon-animatable>
       </neon-animated-pages>
@@ -244,7 +240,7 @@ Example:
       },
 
       _ratioChanged: function(ratio) {
-        this.$.container.style['padding-top'] = ratio + '%';
+        this.style['padding-bottom'] = (ratio * 100) + '%';
       },
 
       _doPlay: function() {
