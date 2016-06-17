@@ -18,6 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
   <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
   <link rel="import" href="../video-wrapper.html">
+  <link rel="import" href="pre-ignition-logo.html">
   <style>
   demo-snippet {
     /*height: 350px;*/
@@ -25,6 +26,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   .demo {
     /*height: 100%;*/
+  }
+
+  pre-ignition-logo {
+    background-color: var(--primary-color, #A79C9C);
+  }
+  .abs {
+    position: absolute;
+    color : white;
+    top: 10px;
+    left: 10px;
   }
   </style>
 </head>
@@ -37,8 +48,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <template>
         <template is="dom-bind" id="app">
           <video-wrapper id="wrapper">
-            <h2>Video Title</h2>
-            <p>Hello</p>
+            <div class="abs">
+              <h2>Video Title</h2>
+              <p>Hello</p>
+              
+            </div>
+            <pre-ignition-logo></pre-ignition-logo> 
           </video-wrapper>
         </template>
       </template>
