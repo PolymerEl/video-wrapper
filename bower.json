@@ -1,0 +1,31 @@
+{
+  "name": "video-wrapper",
+  "version": "1.0.7",
+  "authors": [
+    "Christophe Geiser <christophe.geiser@gmail.com>"
+  ],
+  "description": "A wrapper for google-youtube allowing better performance. Google-youtube element is attached to the dom only before the video is actually player.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "video-wrapper.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/polymerEl/video-wrapper/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "google-youtube": "GoogleWebComponents/google-youtube#^1.2.1",
+    "neon-animation": "PolymerElements/neon-animation#^1.2.3",
+    "paper-spinner": "PolymerElements/paper-spinner#^1.2.0",
+    "iron-demo-helpers": "^1.0.0",
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  }
+}
