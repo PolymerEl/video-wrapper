@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../polymer/polymer.html">
 <!-- <link rel="import" href="../neon-animation/neon-animated-pages.html"> -->
 <link rel="import" href="../neon-animation/neon-animation.html">
+<link rel="import" href="../paper-spinner/paper-spinner.html">
 <!-- <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html"> -->
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../google-youtube/google-youtube.html">
@@ -47,9 +48,21 @@ Example:
       max-width: 100%;
       max-height: 100%;
     }
-
-    neon-animated-pages {
+    
+    .overlay {
+      display: flex;
+      position: absolute;
+      padding-top: 22%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
+    
+    neon-animated-pages {}
     </style>
     <div id="container">
       <neon-animated-pages on-tap="_doPlay" class="flex" selected="[[selected]]" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
@@ -57,6 +70,9 @@ Example:
           <content></content>
         </neon-animatable>
         <neon-animatable>
+          <div class="overlay" hidden$="[[!isSpinnerActive]]">
+            <paper-spinner active="[[isSpinnerActive]]"></paper-spinner>
+          </div>
           <template is="dom-if" if={{isEnabled}}>
             <google-youtube fluid autoplay="1" modestbranding="1" video-id="[[videoId]]" playbackstarted="{{playbackstarted}}" state="{{state}}" currenttime="{{currenttime}}" duration="{{duration}}" currenttimeformatted="{{currenttimeformatted}}" durationformatted="{{durationformatted}}" fractionloaded="{{fractionloaded}}" chromeless="[[chromeless]]" thumbnail="[[thumbnail]]"></google-youtube>
           </template>
@@ -72,9 +88,15 @@ Example:
       is: 'video-wrapper',
 
       properties: {
+        isSpinnerActive: {
+          type: Boolean,
+          value: false
+        },
+
         selected: {
           type: Number,
-          value: 0
+          value: 0,
+          observer: '_selectedChanged'
         },
 
         ratio: {
@@ -235,8 +257,34 @@ Example:
         }
 
       },
+
+      listeners: {
+        // 'api-load': '_onAPILoad',
+        'google-youtube-ready': '_onYoutubeReady',
+        // 'onYouTubeIframeAPIReady': '_onAPIReady'
+        // 'on-youTubeIframeAPIReady': '_onAPIReady2'
+      },
+      _onYoutubeReady: function() {
+        // this.isGoogleReady = true
+        this.isSpinnerActive = false;
+        console.info('_onYoutubeReady');
+      },
+      // _onAPILoad : function(){
+      //   console.info('_onAPILoad');
+      // },
+      // _onAPIReady : function(){
+      //   console.info('_onAPIReady');
+      // },
+
+
       _isEnabledCompute: function(selected) {
         return selected === 1;
+      },
+
+      _selectedChanged: function(selected) {
+        if (selected === 1) {
+          this.isSpinnerActive = true;
+        }
       },
 
       _ratioChanged: function(ratio) {
@@ -246,16 +294,12 @@ Example:
       _doPlay: function() {
         this.selected = 1;
       },
-      // Element Lifecycle
 
-      attached: function() {
-        // `attached` fires once the element and its parents have been inserted
-        // into a document.
-        //
-        // This is a good place to perform any work related to your element's
-        // visual state or active behavior (measuring sizes, beginning animations,
-        // loading resources, etc).
-      }
+      toggle: function() {
+          this.selected = (this.selected + 1) % 2;
+        }
+        // Element Lifecycle
+
 
     });
   })();
